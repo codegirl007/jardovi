@@ -50,7 +50,7 @@ export default function Task2({setVisibleTask}: Props) {
         <Box width="100vw" height="100vh" alignItems="center" justifyContent="center" padding={10}>
           <Stack width="100%" alignItems="center" height="100px">
             <PrimaryText
-              text={<>Úkol 3 : &quot;Všechny radio buttony zaškrtni&quot;</>}
+              text={<>Úkol 3 : &quot;Zaškrtni všechny radio buttony&quot;</>}
               mb={isMobile ? '18px' : '12px'}
               fontSize={isMobile ? '32px' : '44px'}
               sx={{

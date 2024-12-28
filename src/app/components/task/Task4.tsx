@@ -48,7 +48,7 @@ export default function Task4({setVisibleTask}: Props) {
         />
         <Stack alignItems="start">
           <Box color="white" fontFamily={'Borda'}>
-            První číslo je počet dětí co má Janča
+            První číslo je počet dětí co má Janča v domácnosti
           </Box>
           <Box color="white" fontFamily={'Borda'}>
             Druhé číslo je čas, kdy jsi vstával v den výstupu na Sněžku
