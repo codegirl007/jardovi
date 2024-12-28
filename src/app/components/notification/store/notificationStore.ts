@@ -20,7 +20,8 @@ type State = {
 type Actions = {
   reset: () => void
   showNotification: (notificationInfo: NotificationInfo) => void
-  hideNotification: (notificationInfo: NotificationInfo) => void
+  hideNotification: (id: number) => void
+  hideErrorNotification: () => void
 }
 
 const initialState: State = {
@@ -36,18 +37,16 @@ export const useNotificationStore = create<State & Actions>((set) => ({
   showNotification: (notificationInfo: NotificationInfo) => {
     const lastId = useNotificationStore.getState().lastId
     const newNotification = {...notificationInfo, id: lastId + 1}
-    setTimeout(() => {
-      set(() => ({
-        notifications: []
-      }))
-    }, 4000)
     set((state) => ({
       notifications: [...state.notifications, {...newNotification}],
       lastId: state.lastId + 1
     }))
   },
-  hideNotification: (notificationInfo: NotificationInfo) => {
-    set((state) => ({notifications: state.notifications.filter((item) => item.id !== notificationInfo.id)}))
+  hideNotification: (id: number) => {
+    set((state) => ({notifications: state.notifications.filter((item) => item.id !== id)}))
+  },
+  hideErrorNotification: () => {
+    set((state) => ({notifications: state.notifications.filter((item) => item.variant !== NotificationVariant.ERROR)}))
   }
 }))
 
@@ -55,3 +54,4 @@ export const notificationsSelector = (state: State) => state.notifications
 export const resetSelector = (actions: Actions) => actions.reset
 export const showNotificationSelector = (actions: Actions) => actions.showNotification
 export const hideNotificationSelector = (actions: Actions) => actions.hideNotification
+export const hideErrorNotificationSelector = (actions: Actions) => actions.hideErrorNotification

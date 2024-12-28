@@ -6,6 +6,7 @@ import CustomButton from '../buttons/CustomButton'
 import PrimaryText from '../PrimaryText'
 import {Dispatch, SetStateAction, useEffect, useState} from 'react'
 import {
+  hideErrorNotificationSelector,
   NotificationVariant,
   showNotificationSelector,
   useNotificationStore
@@ -20,6 +21,7 @@ export default function Task1({setVisibleTask}: Props) {
   const [clicked, setClicked] = useState(0)
   const [buttonsData, setButtonsData] = useState([])
   const setNotification = useNotificationStore(showNotificationSelector)
+  const hideErrorNotification = useNotificationStore(hideErrorNotificationSelector)
 
   const rainbowColors = [
     '#FF5733', // Oranžová červená
@@ -82,6 +84,7 @@ export default function Task1({setVisibleTask}: Props) {
     }
     if (clicked === 5) {
       setVisibleTask(1)
+      hideErrorNotification()
       return setNotification({
         message: 'Hurááá',
         variant: NotificationVariant.SUCCESS

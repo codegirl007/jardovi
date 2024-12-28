@@ -8,14 +8,20 @@ import Step1 from '../steps_second/Step1'
 import Step2 from '../steps_second/Step2'
 import Step3 from '../steps_second/Step3'
 import Step4 from '../steps_second/Step4'
+import {hideNotificationSelector, useNotificationStore} from '../notification/store/notificationStore'
 
 export default function Task5() {
   const [visibleStep, setVisibleStep] = useState(0)
   const {isMobile} = useIsResponsive()
+  const hideNotification = useNotificationStore(hideNotificationSelector)
 
   const steps = [<Step1 key={0} />, <Step2 key={1} />, <Step3 key={2} />, <Step4 key={2} />]
 
   useEffect(() => {
+    setTimeout(() => {
+      hideNotification(6)
+    }, 2000)
+
     if (visibleStep === steps.length) {
       return
     }

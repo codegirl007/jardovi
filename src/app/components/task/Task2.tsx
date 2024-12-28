@@ -10,6 +10,7 @@ import {z} from 'zod'
 import CustomButton from '../buttons/CustomButton'
 import PrimaryText from '../PrimaryText'
 import CustomSwitch from '../switches/CustomSwitch'
+import {hideNotificationSelector, useNotificationStore} from '../notification/store/notificationStore'
 
 interface Props {
   setVisibleTask: Dispatch<SetStateAction<number>>
@@ -22,6 +23,7 @@ const switchCount = 16
 export default function Task2({setVisibleTask}: Props) {
   const {isMobile} = useIsResponsive()
   const [buttonsData, setButtonsData] = useState([])
+  const hideNotification = useNotificationStore(hideNotificationSelector)
 
   const initialSwitches: Record<SwitchKeys, boolean> = {} as Record<SwitchKeys, boolean>
   Array.from({length: switchCount}).forEach((num, index) => {
@@ -54,6 +56,9 @@ export default function Task2({setVisibleTask}: Props) {
       }
     }))
     setButtonsData(generatedData)
+    setTimeout(() => {
+      hideNotification(5)
+    }, 2000)
   }, [])
 
   return (
