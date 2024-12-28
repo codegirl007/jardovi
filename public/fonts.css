@@ -1,0 +1,48 @@
+@font-face {
+  font-family: 'Borda';
+  src: url('/fonts/Borda-Bold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Borda-Regular';
+  src: url('/fonts/Borda-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Borda-Light';
+  src: url('/fonts/Borda-Light.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Borda-demibold';
+  src: url('/fonts/Borda-Demibold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Borda-extrabold';
+  src: url('/fonts/Borda-ExtraBold.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Borda-Medium';
+  src: url('/fonts/Borda-Medium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Objective Mk1';
+  src: url('/fonts/ObjektivMk1.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
