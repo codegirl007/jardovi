@@ -9,7 +9,7 @@ import NotificationContainer from './components/notification/NotificationContain
 
 export const metadata: Metadata = {
   title: 'Jardovi k narozeninám',
-  description: 'Jarda nám zestárl o rok'
+  description: 'Kratochvilná narozeninová aplikace, která není jen na chvíli :)'
 }
 
 export const viewport: Viewport = {

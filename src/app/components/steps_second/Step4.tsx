@@ -8,7 +8,7 @@ import {downloadFile} from '../helpers'
 
 export default function Step4() {
   const onDownload = async () => {
-    const fileUrl = '/data/gift.jpg'
+    const fileUrl = '/data/gift.pdf'
     try {
       await downloadFile(fileUrl, 'darek')
 
