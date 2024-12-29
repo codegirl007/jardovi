@@ -1,19 +1,11 @@
 'use client'
 
-import React from 'react'
-import Typography from '@mui/material/Typography'
-import IconButton from '@mui/material/IconButton'
-import SnackbarContent from '@mui/material/SnackbarContent'
 import {styled} from '@mui/material'
-
-import {
-  hideNotificationSelector,
-  NotificationInfo,
-  NotificationVariant,
-  useNotificationStore
-} from './store/notificationStore'
-import {SuccessIcon} from '@/assets/notificationIcons/SuccessIcon'
+import SnackbarContent from '@mui/material/SnackbarContent'
+import Typography from '@mui/material/Typography'
 import {ErrorIcon} from '@/assets/notificationIcons/ErrorIcon'
+import {SuccessIcon} from '@/assets/notificationIcons/SuccessIcon'
+import {NotificationInfo, NotificationVariant} from './store/notificationStore'
 
 const Styled = {
   SnackBarIconContainer: styled('div')(({theme}) => ({
@@ -35,7 +27,7 @@ const Styled = {
     textOverflow: 'ellipsis',
     color: 'black',
     fontFamily: 'Borda',
-    fontSize: '18px'
+    fontSize: '15px'
   }),
   MessageContainer: styled('div')({
     padding: 0,
@@ -43,7 +35,7 @@ const Styled = {
     flexDirection: 'column',
     marginTop: 'auto',
     marginBottom: 'auto',
-    alignItems: 'center'
+    alignItems: 'start'
   })
 }
 
@@ -52,11 +44,6 @@ type Props = {
 }
 
 export default function Notification({notification}: Props) {
-  const hideNotification = useNotificationStore(hideNotificationSelector)
-  const onClose = () => {
-    hideNotification(notification)
-  }
-
   return (
     <SnackbarContent
       key={notification.id}
@@ -71,7 +58,6 @@ export default function Notification({notification}: Props) {
           </Styled.MessageContainer>
         </>
       }
-      action={[<IconButton key="close" aria-label="Close" size="large" onClick={onClose}></IconButton>]}
       sx={{marginBottom: {md: 6, xs: 6}}}
     />
   )

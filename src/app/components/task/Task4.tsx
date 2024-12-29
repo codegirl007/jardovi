@@ -6,6 +6,7 @@ import {Dispatch, SetStateAction, useEffect, useState} from 'react'
 import OtpInput from '../input/OtpInput'
 import PrimaryText from '../PrimaryText'
 import {
+  hideErrorNotificationSelector,
   NotificationVariant,
   showNotificationSelector,
   useNotificationStore
@@ -20,15 +21,57 @@ export default function Task4({setVisibleTask}: Props) {
   const [otp, setOtp] = useState('')
   const onChange = (value: string) => setOtp(value)
   const setNotification = useNotificationStore(showNotificationSelector)
+  const hideErrorNotification = useNotificationStore(hideErrorNotificationSelector)
 
   useEffect(() => {
-    if (otp === '4321') {
-      setVisibleTask(4)
+    const splittedOtp = otp.split('')
+    const newOtp = splittedOtp.filter((item) => item !== ' ')
+
+    if (
+      (newOtp[0] === '4' && newOtp.length > 0) ||
+      (newOtp[1] === '3' && newOtp.length > 1) ||
+      (newOtp[2] === '2' && newOtp.length > 2) ||
+      (newOtp[3] === '1' && newOtp.length > 3)
+    ) {
+      hideErrorNotification()
+    }
+    const isCorrect = newOtp[0] === '4' && newOtp[1] === '3' && newOtp[2] === '2' && newOtp[3] === '1'
+    if (newOtp.length === 4 && isCorrect) {
+      hideErrorNotification()
       setNotification({
         message: 'Woohoo!',
         variant: NotificationVariant.SUCCESS
       })
-      return
+      setVisibleTask(4)
+    } else {
+      if (newOtp[0] !== '4' && newOtp.length > 0) {
+        return setNotification({
+          message: 'První odpověď špatně!',
+          description: 'Kdepak! Je to méně než 5 a víc než 3',
+          variant: NotificationVariant.ERROR
+        })
+      }
+      if (newOtp[1] !== '3' && newOtp.length > 1) {
+        return setNotification({
+          message: 'Druhá odpověď špatně!',
+          description: 'Nope! Je to méně než 4 a víc než 2',
+          variant: NotificationVariant.ERROR
+        })
+      }
+      if (newOtp[2] !== '2' && newOtp.length > 2) {
+        return setNotification({
+          message: 'Třetí odpověď špatně!',
+          description: 'Jakože...byli tam červení a modří',
+          variant: NotificationVariant.ERROR
+        })
+      }
+      if (newOtp[3] !== '1' && newOtp.length > 3) {
+        return setNotification({
+          message: 'Čtvrtá odpověď špatně!',
+          description: 'Co bychom bez Martínka dělali!',
+          variant: NotificationVariant.ERROR
+        })
+      }
     }
   }, [otp])
 
